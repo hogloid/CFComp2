@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root 'application#toppage'
+  get 'static_pages/home' => 'static_pages#home'
+  post 'static_pages/home' => 'static_pages#receive'
+  resources :users
 end
