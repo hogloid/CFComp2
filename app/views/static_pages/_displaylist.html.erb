@@ -1,0 +1,7 @@
+  
+<% object.each{ |i| %>
+  <%= link_to i[:name], 
+  "http://www.codeforces.com/contest/#{i[:contestId]}/problem/#{i[:index]}" %>
+  , from <%= link_to i[:source], "http://www.codeforces.com/contest/#{i[:contestId]}"%>
+  , solved by <%= i[:solved_num]%> people</br>
+<% } %>

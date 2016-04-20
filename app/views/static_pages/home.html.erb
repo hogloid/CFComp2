@@ -1,12 +1,23 @@
 <h1>StaticPages#home</h1>
 
-<%= form_for @user, :url => {:action => 'home'} do |f|%>
-  <%= f.label :id %>
-  <%= f.text_field :id %>
-  <%= f.submit "Do it!", class: "btn btn-primary" %>
+<%= form_tag('/static_pages/home', :method => :post) do %>
+  <%= label :post, :yourid %>
+  <%= text_field :you, :id %>
+  </br>
+  <%= label :post, :oppid  %>
+  <%= text_field :opp, :id %>
+  <%= submit_tag 'Compare!'   %>
 <% end %>
 
+<% if !@your_id.nil? %>
+  <h3>The problems only you solved</h3>
+  <%= render :partial => "displaylist", :locals => { object: @only_you_list} %>
+  
+  <h3>The problems only the opponent solved</h3>
+  <%= render :partial => "displaylist", :locals => { object: @only_opp_list} %>
 
-<%= @user_id %>
+  <h3>The problems both solved</h3>
+  <%= render :partial => "displaylist", :locals => { object: @both_list} %>
+<%end%>
 
 <p>Find me in app/views/static_pages/home.html.erb</p>
