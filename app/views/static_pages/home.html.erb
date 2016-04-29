@@ -1,6 +1,11 @@
 <h1>StaticPages#home</h1>
 
 <%= form_tag('/static_pages/home', :method => :post) do %>
+  Sorted by: </br>
+  the number of solved people
+  <%= radio_button 'radio', 'sorting_base', 'solved_num' %>  
+  the date of contest
+  <%= radio_button 'radio', 'sorting_base', 'date' %></br>
   <%= label :post, :yourid %>
   <%= text_field :you, :id %>
   </br>
@@ -19,5 +24,6 @@
   <h3>The problems both solved</h3>
   <%= render :partial => "displaylist", :locals => { object: @both_list} %>
 <%end%>
+<%= params[:sorting_base] %>
 
 <p>Find me in app/views/static_pages/home.html.erb</p>
