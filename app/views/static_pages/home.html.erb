@@ -12,7 +12,7 @@
   <%= submit_tag 'Compare!'   %>
 <% end %>
 
-<% if !@your_id.nil? %>
+<% if !@only_you_list.nil? %>
   <h3>The problems only you solved</h3>
   <%= render :partial => "displaylist", :locals => { object: @only_you_list} %>
   
