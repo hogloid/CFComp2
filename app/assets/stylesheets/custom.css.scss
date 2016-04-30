@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.fixed_width {
+    float: left;
+    width: 300px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    display:inline-block;
+}
+.from {
+    float: left;
+    display:inline-block;
+}

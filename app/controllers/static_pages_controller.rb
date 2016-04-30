@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
       else
         nil
       end
-    }.uniq.compact.delete_if{ |item| item[:source]==nil }
+    }.uniq.compact.delete_if{ |item| item[:source]==nil || item[:solved_num]==nil }
   end
 
   def home
@@ -70,6 +70,8 @@ class StaticPagesController < ApplicationController
         @both_list = sort_list_by_date @both_list
       end
     end
+  end
+  def sandbox
   end
   def receive
 #    render text: params[:radio][:sorting_base]

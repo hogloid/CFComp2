@@ -1,5 +1,3 @@
-<h1>StaticPages#home</h1>
-
 <%= form_tag('/static_pages/home', :method => :post) do %>
   Sorted by: </br>
   the number of solved people
@@ -24,6 +22,3 @@
   <h3>The problems both solved</h3>
   <%= render :partial => "displaylist", :locals => { object: @both_list} %>
 <%end%>
-<%= params[:sorting_base] %>
-
-<p>Find me in app/views/static_pages/home.html.erb</p>
