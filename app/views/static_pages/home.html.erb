@@ -1,14 +1,20 @@
 <%= form_tag('/static_pages/home', :method => :post) do %>
   Sorted by: </br>
-  the number of solved people
-  <%= radio_button 'radio', 'sorting_base', 'solved_num' %>  
-  the date of contest
-  <%= radio_button 'radio', 'sorting_base', 'date' %></br>
+  <% if params[:sorting_base].nil? || params[:sorting_base]=="solved_num" %>
+    <% which = true %>
+  <% else %>
+    <% which = false %>
+  <% end %>
+  the number of people who solved
+  <%= radio_button 'radio', 'sorting_base', 'solved_num', checked: which%>
+  <%= radio_button 'radio', 'sorting_base', 'date', checked: (!which)%>
+  the date of contest</br>
+
   <%= label :post, :yourid %>
-  <%= text_field :you, :id %>
+  <%= text_field :you, :id, value: params[:yourid] %>
   </br>
   <%= label :post, :oppid  %>
-  <%= text_field :opp, :id %>
+  <%= text_field :opp, :id, value: params[:oppid] %>
   <%= submit_tag 'Compare!'   %>
 <% end %>
 

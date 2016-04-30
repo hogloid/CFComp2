@@ -17,7 +17,7 @@ class StaticPagesController < ApplicationController
   end
   def receive
     url="/static_pages/home?yourid=#{params[:you][:id]}&oppid=#{params[:opp][:id]}"
-    url+=params[:button][:sorting_base] if !params[:button].nil?
+    url+="&sorting_base=#{params[:radio][:sorting_base]}" if !params[:radio].nil?
     redirect_to url
   end
 end

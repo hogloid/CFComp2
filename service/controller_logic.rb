@@ -7,6 +7,7 @@ module MyMethods
       var['name']
     end
   end
+  
   def get_solved_num id, index
     var = @@problem_status['result']['problemStatistics'].find { |item|
       item['contestId']==id && item['index']==index}
@@ -15,6 +16,10 @@ module MyMethods
     else
       var['solvedCount']
     end
+  end
+  
+  def sort_list_by_block (list, block)
+    list.sort { |a,b| block.call(a,b) }
   end
 
   def sort_list_by_solved_num list
@@ -64,15 +69,16 @@ module MyMethods
     @@only_you_list= your_ac_list - opp_ac_list
     @@only_opp_list= opp_ac_list - your_ac_list
     @@both_list    = your_ac_list & opp_ac_list
+    
     if params[:sorting_base]=="solved_num"
-      @@only_you_list = sort_list_by_solved_num @@only_you_list
-      @@only_opp_list = sort_list_by_solved_num @@only_opp_list
-      @@both_list = sort_list_by_solved_num @@both_list
+      sort_block= Proc.new{ |a, b| a[:solved_num] <=> b[:solved_num] }
     elsif params[:sorting_base]=="date"
-      @@only_you_list = sort_list_by_date @@only_you_list
-      @@only_opp_list = sort_list_by_date @@only_opp_list
-      @@both_list = sort_list_by_date @@both_list
+      sort_block=Proc.new { |a, b| a[:contestId] <=> b[:contestId] }
     end
+    
+    @@only_you_list = sort_list_by_block @@only_you_list, sort_block
+    @@only_opp_list = sort_list_by_block @@only_opp_list, sort_block
+    @@both_list = sort_list_by_block @@both_list, sort_block
     [@@only_you_list, @@only_opp_list, @@both_list]
   end
 end
